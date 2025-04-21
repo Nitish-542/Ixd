@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Weekly elist</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- FullCalendar styles -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+      #calendar {
+        max-width: 900px;
+        margin: 30px auto;
+      }
+      .fc-toolbar{
+        text-align: center;
+      }
+      .fc-toolbar-title{
+        display: none;
+      }
+      .fc .fc-toolbar{
+        display: block;
+      }
+
+      .event-footer-list {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .elist-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 900px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .elist-list li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .elist-list li:hover {
+        background-color: #f0f0f0;
+      }
+
+      .highlight {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+      }
+
+      .elist-list i {
+        margin-right: 10px;
+        color: #007bff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><i class="fa fa-question"></i><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><i class="fa fa-globe"></i><a class="nav-link" href="#">Language</a></li>
+            <li class="nav-item"><i class="fa fa-info"></i><a class="nav-link" href="#">About the App</a></li>
+            <li class="nav-item"><i class="fa fa-share"></i><a class="nav-link" href="#">Share the App</a></li>
+            <li class="nav-item"><i class="fa fa-envelope"></i><a class="nav-link" href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <a class="navbar-brand" href="#">Logo</a>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+            <i class="fa fa-user"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <h4 class="text-center">Events</h4>
+      <div id="calendar"></div>
+    </main>
+
+    <!-- 📋 elist Summary Footer -->
+    <div class="event-footer-list">
+      <ul id="eventList" class="elist-list">
+        <!-- Event list items will be inserted here via JavaScript -->
+      </ul>
+    </div>
+
+    <footer>
+      <ul>
+        <li>
+          <a href="id.html">
+            <i class="fa fa-credit-card"></i>
+            <span>ID</span>
+          </a>
+        </li>
+        <li>
+          <a href="map.html">
+            <i class="fa fa-compass"></i>
+            <span>Map</span>
+          </a>
+        </li>
+        <li>
+          <a href="timetable.html">
+            <i class="fa fa-table"></i>
+            <span>Time Table</span>
+          </a>
+        </li>
+        <li>
+          <a href="events.html">
+            <i class="fa fa-calendar"></i>
+            <span>Event</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar');
+        const eventListEl = document.getElementById('eventList');
+
+        const events = [
+          {
+            title: 'Math Class',
+            start: '2025-04-14T09:00:00',
+            end: '2025-04-14T10:00:00'
+          },
+          {
+            title: 'Physics Lab',
+            start: '2025-04-15T11:00:00',
+            end: '2025-04-15T13:00:00'
+          },
+          {
+            title: 'English Lecture',
+            start: '2025-04-16T14:00:00',
+            end: '2025-04-16T15:30:00'
+          },
+          {
+            title: 'Computer Science',
+            start: '2025-04-17T10:00:00',
+            end: '2025-04-17T12:00:00'
+          },
+          {
+            title: 'Chemistry',
+            start: '2025-04-18T13:00:00',
+            end: '2025-04-18T14:30:00'
+          }
+        ];
+
+        // Initialize the calendar
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'timeGridWeek',
+          initialDate: '2025-04-14',
+          slotMinTime: "08:00:00",
+          slotMaxTime: "18:00:00",
+          allDaySlot: false,
+          nowIndicator: true,
+          events: events,
+          eventClick: function(info) {
+            const clickedEvent = info.event;
+            const eventTitle = clickedEvent.title;
+
+            // Find the corresponding list item
+            const listItem = Array.from(eventListEl.children).find(li => li.textContent.includes(eventTitle));
+
+            if (listItem) {
+              // Scroll the item into view at the top
+              listItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+              // Remove previous highlights
+              const highlightedItem = eventListEl.querySelector('.highlight');
+              if (highlightedItem) {
+                highlightedItem.classList.remove('highlight');
+              }
+
+              // Highlight the clicked event
+              listItem.classList.add('highlight');
+            }
+          }
+        });
+        calendar.render();
+
+        // Populate elist summary list in the footer
+        events.forEach(event => {
+          const startTime = new Date(event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const endTime = new Date(event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const date = new Date(event.start).toLocaleDateString();
+
+          const li = document.createElement('li');
+          li.innerHTML = `<i class="fa fa-calendar"></i> <strong>${event.title}</strong> — ${date} from ${startTime} to ${endTime}`;
+          eventListEl.appendChild(li);
+        });
+      });
+    </script>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
