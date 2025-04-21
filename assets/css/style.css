@@ -10,6 +10,10 @@ a{
     color: #000;
 }
 
+.active{
+    color: #116db5;
+}
+
 .signin input[type="text"]{
     border: solid 1px #000;
     padding: 5px 15px;
@@ -98,11 +102,15 @@ footer ul .fa, footer ul span{
 }
 
 .map-label button{
-    border: none;
-    background: #595959;
-    color: #fff;
+    border: solid 1px #000;
+    color: #000000;
     padding: 6px 20px;
     border-radius: 30px;
+}
+
+.fc-toolbar-chunk{
+    display: flex;
+    justify-content: space-between;
 }
 
 .main-timetable .calendar-event ul{
